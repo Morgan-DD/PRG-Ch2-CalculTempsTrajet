@@ -10,7 +10,7 @@ Remarque(s) :
 #include <cstdlib>
 
 int main() {
-
+    // Problème principal
     double distanceY = 10.; // en Km
     double distanceX = 3.;  // en Km
 
@@ -27,4 +27,15 @@ int main() {
     double totalTime = timeL1 + timeL2;
 
     std::cout << "Temp que le robot va prendre pour récuperer l'objet: " <<totalTime << " h" << std::endl;
+
+    // Problème Bonus
+
+    /*
+     Les variables du premier problèmesont réutilisée, les variables de tempe et de la distance L2 seront recalculés
+
+    \left(10-x\right)/5+\:\sqrt{\left(9+x^2\right)}/2
+    -b/2a
+     */
+
+
 }
