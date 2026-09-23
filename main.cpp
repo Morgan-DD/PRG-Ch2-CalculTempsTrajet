@@ -11,15 +11,20 @@ Remarque(s) :
 
 int main() {
 
-    int distanceY = 10.; // en Km
-    int distanceX = 3.;  // en Km
+    double distanceY = 10.; // en Km
+    double distanceX = 3.;  // en Km
 
-    int distanceL1 = 6.; // en Km
+    double distanceL1 = 6.; // en Km
 
-    int speedL1 = 5; // en Km/h
-    int speedL2 = 2; // en Km/h
+    double speedL1 = 5.; // en Km/h
+    double speedL2 = 2.; // en Km/h
 
     double distanceL2 =  sqrt(pow((distanceY - distanceL1),2) + pow(distanceX,2));
 
-    double timeL1 = 
+    double timeL1 = distanceL1 / speedL1;
+    double timeL2 = distanceL2 / speedL2;
+
+    double totalTime = timeL1 + timeL2;
+
+    std::cout << "Temp que le robot va prendre pour récuperer l'objet: " <<totalTime << " h" << std::endl;
 }
