@@ -9,6 +9,12 @@ Remarque(s) :
 #include <iostream>
 #include <cstdlib>
 
+
+static double calulateTime(double distanceY, double distanceX, double distanceL1, double speedL1, double speedL2) {
+
+    return (distanceL1 / speedL1) + (sqrt(pow((distanceY - distanceL1),2) + pow(distanceX,2)) / speedL2);
+}
+
 int main() {
     // Problème principal
     double distanceY = 10.; // en Km
@@ -24,18 +30,32 @@ int main() {
     double timeL1 = distanceL1 / speedL1;
     double timeL2 = distanceL2 / speedL2;
 
-    double totalTime = timeL1 + timeL2;
+    double totalTime = calulateTime(distanceY, distanceX, distanceL1, speedL1, speedL2);
 
     std::cout << "Temp que le robot va prendre pour récuperer l'objet: " <<totalTime << " h" << std::endl;
 
     // Problème Bonus
 
-    /*
-     Les variables du premier problèmesont réutilisée, les variables de tempe et de la distance L2 seront recalculés
+    bool exitLoop = false;
+    long double lastDistance1=10.;
+    long double lastDistance2=0.;
+    long double bestTIme = totalTime;
+    long double newTime;
+    double newDistanceL1;
+    int exitCounter = 0;
 
-    \left(10-x\right)/5+\:\sqrt{\left(9+x^2\right)}/2
-    -b/2a
-     */
+    while (lastDistance1 != lastDistance2) {
+        newDistanceL1 = ((lastDistance1+lastDistance2)/2);
+        newTime = calulateTime(distanceY, distanceX, newDistanceL1, speedL1, speedL2);
+        if ( newTime< bestTIme) {
+            bestTIme = newTime;
+            lastDistance1 = newDistanceL1;
+            exitCounter = 0;
+        }else {
+            lastDistance2 =newDistanceL1;
+            exitCounter++;
+        }
+    }
 
-
+    std::cout<<"Meilleur temp: "<<bestTIme<<"h, valeure de L1: " << newDistanceL1<<std::endl;
 }
